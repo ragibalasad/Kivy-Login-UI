@@ -1,0 +1,171 @@
+WindowManager:
+    LoginScreen:
+    SignupScreen:
+
+
+<LoginScreen>
+    name: "login_screen"
+
+    MDCard:
+        size_hint: None,None
+        size: 350, 500
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        elevation: 10
+        padding: 30
+        spacing: 20
+        orientation: 'vertical'
+
+        MDLabel:
+            id: welcome_lable
+            text: "WELCOME"
+            font_size: 35
+            halign: 'center'
+            size_hint_y: None
+            height: self.texture_size[1]
+            padding_y: 15
+
+        # Empty Widget
+        MDWidget:
+            size_hint_y: None
+            height: 10
+
+        MDTextFieldRound:
+            id: user
+            hint_text: "username"
+            icon_right: "account"
+            size_hint_x: None
+            mode: 'fill'
+            width: 275
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+
+        MDTextFieldRound:
+            id: password
+            hint_text: "password"
+            icon_right: "eye-off"
+            size_hint_x: None
+            mode: 'fill'
+            width: 275
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+            password: True
+
+        # Empty Widget
+        MDWidget:
+            size_hint_y: None
+            height: 10
+
+        MDFillRoundFlatIconButton:
+            icon: 'login'
+            text: "LOG IN"
+            font_size: 12
+            size_hint_x: .6
+            pos_hint: {"center_x": 0.5}
+
+        MDRoundFlatIconButton:
+            icon: 'account-plus'
+            text: "CREATE ACCOUNT"
+            font_size: 12
+            size_hint_x: .6
+            pos_hint: {"center_x": 0.5}
+            on_release: 
+                app.root.current = "signup_screen"
+                root.manager.transition.direction = "left"
+                app.title = "Sign Up for a new Account - Awesome"
+
+        # Empty Widget
+        MDWidget:
+            size_hint_y: None
+            height: 30
+
+
+<SignupScreen>:
+    name: "signup_screen"
+
+    MDCard:
+        size_hint: None,None
+        size: 650, 500
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        elevation: 10
+        padding: 30
+        spacing: 20
+        orientation: 'vertical'
+
+        MDLabel:
+            id: welcome_lable
+            text: "SIGNUP FOR FREE"
+            font_size: 35
+            halign: 'left'
+            size_hint_y: None
+            height: self.texture_size[1]
+            padding_y: 15
+
+        MDGridLayout:
+            cols: 2
+            spacing: 25
+
+            MDTextFieldRound:
+                id: first_name
+                hint_text: "Full Name"
+                icon_right: "account"
+                size_hint_x: None
+                mode: 'fill'
+                width: 275
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+
+            MDTextFieldRound:
+                id: last_name
+                hint_text: "Username"
+                icon_right: "at"
+                size_hint_x: None
+                mode: 'fill'
+                width: 275
+                font_size: 18
+                pos_hint: {"center_x": 0.5}        
+
+            MDTextFieldRound:
+                id: email
+                hint_text: "Email"
+                icon_right: "email"
+                size_hint_x: None
+                mode: 'fill'
+                width: 275
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+
+            MDTextFieldRound:
+                id: password
+                hint_text: "New Password"
+                icon_right: "eye-off"
+                size_hint_x: None
+                mode: 'fill'
+                width: 275
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+                password: True  
+
+            MDRoundFlatIconButton:
+                icon: 'calendar'
+                text: "Pick your Birthday"
+                on_release: app.show_date_picker()
+
+            MDWidget:
+                size_hint_y: None
+                height: 0
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            spacing: 135
+
+            MDRoundFlatIconButton:
+                icon: 'account-question'
+                text: 'Already Have An Account?'
+                on_release: 
+                    app.root.current = "login_screen"
+                    root.manager.transition.direction = "right"
+                    app.title = "Login - Awesome"
+
+            MDFillRoundFlatIconButton:
+                icon: 'account-check'
+                text: 'Submit Accout Informations'
